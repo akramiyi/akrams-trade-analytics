@@ -16,7 +16,7 @@ const Login = () => {
     setError(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push('/');
+      router.push('/dashboard'); // ✅ FIX
     } catch (error: any) {
       setError(error.message);
     }
@@ -27,22 +27,29 @@ const Login = () => {
       <div className="bg-gray-800 p-8 rounded-md w-96">
         <h1 className="text-3xl font-bold mb-6">Login</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
+
         <form onSubmit={handleLogin}>
-          <input 
-            className="w-full bg-gray-700 p-2 rounded-md mb-4" 
-            type="email" 
-            placeholder="Email" 
+          <input
+            className="w-full bg-gray-700 p-2 rounded-md mb-4"
+            type="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
-          <input 
-            className="w-full bg-gray-700 p-2 rounded-md mb-4" 
-            type="password" 
-            placeholder="Password" 
+
+          <input
+            className="w-full bg-gray-700 p-2 rounded-md mb-4"
+            type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <button type="submit" className="w-full bg-blue-600 p-2 rounded-md">Login</button>
+
+          <button className="w-full bg-blue-600 p-2 rounded-md">
+            Login
+          </button>
         </form>
       </div>
     </div>
